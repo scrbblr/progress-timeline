@@ -1,0 +1,16 @@
+@charset 'UTF-8';
+@font-face{font-family:'Bariol-Light';src:
+  url('../css/fonts/bariol/bariol_light-webfont.eot'),
+  url('../css/fonts/bariol/bariol_light-webfont.eot') format('embedded-opentype'),
+  url('../css/fonts/bariol/bariol_light-webfont.woff') format('woff'),
+  url('../css/fonts/bariol/bariol_light-webfont.ttf') format('truetype'),
+  url('../css/fonts/bariol/bariol_light-webfont.svg') format('svg');
+  font-style:light}
+body{font-family:"Bariol-Light"}
+@font-face {font-family:'entypo';src:
+  url('../css/fonts/entypo/entypo.ttf') format('truetype'),
+  url('../css/fonts/entypo/entypo.eot#')  format('eot'),
+  url('../css/fonts/entypo/entypo.woff')  format('woff'),
+  url('../css/fonts/entypo/entypo.ttf')   format('truetype'),
+  url('../css/fonts/entypo/entypo.svg#entypo')  format('svg');
+}
