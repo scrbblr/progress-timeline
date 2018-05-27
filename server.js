@@ -1,12 +1,28 @@
 //  OpenShift sample Node application
 var express = require('express'),
     app     = express(),
-    morgan  = require('morgan');
+    morgan  = require('morgan'),
+    bodyParser = require('body-parser'),
+    getRawBody = require('raw-body'),
+    //typer = require('media-typer'),
+    compress = require('compression'),
+    cookieParser = require('cookie-parser'),
+    //session = require('express-session'),
+    serveStatic = require('serve-static');
+
+var secret = "White-quote-Ordain-Mmm-fairy-Vinyl-Sky-Dig-byron-lymph",
+    oneDay = 86400000,
+    daysInCache = 14 * oneDay;
     
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
-app.use(morgan('combined'))
+app.use(compress({threshold:0,level:9}));
+app.use(morgan('combined'));
+app.use(cookieParser(secret));
+app.use(bodyParser.json({limit: '200mb',extended: true}))
+app.use(bodyParser.urlencoded({limit: '50mb',extended: true}))
+app.use(serveStatic(__dirname + '/public', { maxAge: daysInCache, index:false}))
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
@@ -53,6 +69,14 @@ var initDb = function(callback) {
     dbDetails.type = 'MongoDB';
 
     console.log('Connected to MongoDB at: %s', mongoURL);
+    
+    /*app.use(session({
+      maxAge: new Date(Date.now() + oneDay).getTime(),
+      store: new MongoStore({db:db}),
+      secret: secret,
+      saveUninitialized: true,
+      resave: true
+    }));*/
   });
 };
 
