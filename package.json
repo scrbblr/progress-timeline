@@ -16,7 +16,7 @@
     "raw-body":"latest",
     "compression":"latest",
     "serve-static":"latest",
-    "bodyParser":"latest"
+    "body-parser":"latest"
   },
   "engine": {
     "node": "*",
