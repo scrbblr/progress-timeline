@@ -11,7 +11,12 @@
     "mocha": "^2.4.5",
     "mongodb": "^2.1.16",
     "morgan": "^1.7.0",
-    "object-assign":"4.1.0"
+    "object-assign":"4.1.0",
+    "body-parser":"latest",
+    "raw-body":"latest",
+    "compression":"latest",
+    "serve-static":"latest",
+    "bodyParser":"latest"
   },
   "engine": {
     "node": "*",
