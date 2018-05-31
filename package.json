@@ -6,6 +6,7 @@
   "dependencies": {
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
+    "coffee-script":"latest",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "mocha": "^2.4.5",
@@ -17,8 +18,7 @@
     "cookie-parser":"latest",
     "compression":"latest",
     "serve-static":"latest",
-    "body-parser":"latest",
-    "coffeescript":"latest"
+    "body-parser":"latest"
   },
   "engine": {
     "node": "*",
