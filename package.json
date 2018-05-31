@@ -17,7 +17,8 @@
     "cookie-parser":"latest",
     "compression":"latest",
     "serve-static":"latest",
-    "body-parser":"latest"
+    "body-parser":"latest",
+    "coffeescript":"latest"
   },
   "engine": {
     "node": "*",
