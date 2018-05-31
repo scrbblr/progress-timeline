@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({limit: '50mb',extended: true}))
 app.use(serveStatic(__dirname + '/public', { maxAge: daysInCache, index:false}))
 
 port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080
-ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
+ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL
 mongoURLLabel = ""
 
@@ -45,10 +45,10 @@ db = null
 dbDetails = new Object()
 
 initDb = (callback) ->
-  if mongoURL == null then return
+  if mongoURL == null then return null
 
   mongodb = require('mongodb')
-  if mongodb == null then return
+  if mongodb == null then return null
 
   mongodb.connect mongoURL, (err, conn) ->
     if err
