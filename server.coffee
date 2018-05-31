@@ -3,10 +3,8 @@ app = express()
 morgan  = require('morgan')
 bodyParser = require('body-parser')
 getRawBody = require('raw-body')
-#typer = require('media-typer')
 compress = require('compression')
 cookieParser = require('cookie-parser')
-#session = require('express-session')
 serveStatic = require('serve-static')
 
 secret = "White-quote-Ordain-Mmm-fairy-Vinyl-Sky-Dig-byron-lymph"
@@ -63,16 +61,6 @@ initDb = (callback) ->
     dbDetails.type = 'MongoDB'
 
     console.log('Connected to MongoDB at: %s', mongoURL)
-    
-    ####
-    app.use(session({
-      maxAge: new Date(Date.now() + oneDay).getTime(),
-      store: new MongoStore({db:db}),
-      secret: secret,
-      saveUninitialized: true,
-      resave: true
-    }));*/
-    ###
 
 app.get '/', (req, res) ->
   unless db
@@ -83,7 +71,7 @@ app.get '/', (req, res) ->
     col.insert({ip: req.ip, date: Date.now()})
     col.count (err, count) ->
       if err
-        console.log('Error running count. Message:\n'+err)
+        console.log('Error running count. Message:\n' + err)
       res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails })
   else
     res.render('index.html', { pageCountMessage : null})
@@ -104,7 +92,7 @@ app.use (err, req, res, next) ->
   res.status(500).send('Something bad happened!')
 
 initDb (err) ->
-  console.log('Error connecting to Mongo. Message:\n'+err)
+  console.log('Error connecting to Mongo. Message:\n' + err)
 
 app.listen(port, ip)
 console.log('Server running on http://%s:%s', ip, port)
