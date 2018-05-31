@@ -67,7 +67,7 @@ app.get '/', (req, res) ->
     initDb (err) ->
       if err then console.log(err)
   if db
-    var col = db.collection('counts')
+    col = db.collection('counts')
     col.insert({ip: req.ip, date: Date.now()})
     col.count (err, count) ->
       if err
