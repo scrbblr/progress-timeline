@@ -26,7 +26,7 @@ ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL
 mongoURLLabel = ""
 
-if (mongoURL == null) and process.env.DATABASE_SERVICE_NAME
+unless mongoURL and process.env.DATABASE_SERVICE_NAME
   mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase()
   mongoHost = process.env[mongoServiceName + '_SERVICE_HOST']
   mongoPort = process.env[mongoServiceName + '_SERVICE_PORT']
