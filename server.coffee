@@ -45,10 +45,10 @@ db = null
 dbDetails = new Object()
 
 initDb = (callback) ->
-  if mongoURL == null then return null
+  unless mongoURL then return
 
   mongodb = require('mongodb')
-  if mongodb == null then return null
+  unless mongodb then return
   
   console.log("MONGODB URL",mongoURL)
   
