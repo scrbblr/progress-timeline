@@ -49,7 +49,9 @@ initDb = (callback) ->
 
   mongodb = require('mongodb')
   if mongodb == null then return null
-
+  
+  console.log("MONGODB URL",mongoURL)
+  
   mongodb.connect mongoURL, (err, conn) ->
     if err
       callback(err)
