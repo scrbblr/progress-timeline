@@ -28,8 +28,8 @@
     "npm": "*"
   },
   "scripts": {
-    "start": "node server.coffee",
-    "test": "IP=0.0.0.0 PORT=3030 mocha --timeout 5000 tests/*_test.js"
+    "start": "(coffee --compile -o dist --watch &);node server.coffee",
+    "test": "IP=0.0.0.0 PORT=3030 mocha --compilers coffee:coffee-script/register --timeout 5000 tests/*_test.js"
   },
   "repository": {
     "type": "git",
