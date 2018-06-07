@@ -21,6 +21,14 @@ app.use(bodyParser.json({limit: '200mb',extended: true}))
 app.use(bodyParser.urlencoded({limit: '50mb',extended: true}))
 app.use(serveStatic(__dirname + '/public', { maxAge: daysInCache, index:false}))
 
+app.use 'https://storage.googleapis.com/www.littfass.com', (req, res, next) =>
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "X-Requested-With")
+  res.header("Accept-Ranges","bytes")
+  res.setHeader('Cache-Control', "public, max-age=#{daysInCache / 1000}")
+  res.header("Expires",daysInCache)
+  next()
+
 port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080
 ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL
