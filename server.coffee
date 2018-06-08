@@ -103,6 +103,7 @@ app.use (req, res, next) =>
   res.header("Accept-Ranges","bytes")
   res.setHeader('Cache-Control', "public, max-age=#{daysInCache / 1000}")
   res.header("Expires",daysInCache)
+  next()
 
 app.get '/assets*', (req, res) ->
   result = {path:req.params,query:req.query}
