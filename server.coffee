@@ -21,7 +21,7 @@ app.use(bodyParser.json({limit: '200mb',extended: true}))
 app.use(bodyParser.urlencoded({limit: '50mb',extended: true}))
 app.use(serveStatic(__dirname + '/public', { maxAge: daysInCache, index:false}))
 
-app.use 'https://storage.googleapis.com/www.littfass.com', (req, res, next) =>
+app.use '*', (req, res, next) =>
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "X-Requested-With")
   res.header("Accept-Ranges","bytes")
