@@ -6,7 +6,7 @@ getRawBody = require('raw-body')
 compress = require('compression')
 cookieParser = require('cookie-parser')
 serveStatic = require('serve-static')
-
+request = require('request')
 secret = "White-quote-Ordain-Mmm-fairy-Vinyl-Sky-Dig-byron-lymph"
 oneDay = 86400000
 daysInCache = 14 * oneDay
@@ -21,7 +21,7 @@ app.use(bodyParser.json({limit: '200mb',extended: true}))
 app.use(bodyParser.urlencoded({limit: '50mb',extended: true}))
 app.use(serveStatic(__dirname + '/public', { maxAge: daysInCache, index:false}))
 
-app.use '*', (req, res, next) =>
+app.use '/assets', (req, res, next) =>
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "X-Requested-With")
   res.header("Accept-Ranges","bytes")
@@ -96,6 +96,17 @@ app.get '/pagecount', (req, res) ->
   else
     res.send('{ pageCount: -1 }')
 
+app.get '/assets/:path', (req, res) ->
+  result = {path:req.params.path}
+  res.send(result)
+
+app.use (req, res, next) =>
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "X-Requested-With")
+  if req.url.match(/^\/(css|javascripts|img|js|images|font|assets|data)\/.+/)
+    res.setHeader('Cache-Control', "public, max-age=#{daysInCache}")
+  res.header("Expires",daysInCache)
+  next()
 
 app.use (err, req, res, next) ->
   console.error(err.stack)
