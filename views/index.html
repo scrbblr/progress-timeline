@@ -35,7 +35,7 @@
   <div class="btn-timeline btn"><img src="images/timeline.svg" class="svg timeline-icon" id="timeliner"></div>
   <div class="btn-lock btn ico-lock"></div>
   <div class="btn-plan btn ico-plan"></div>
-  <div class="btn-map btn ico-map"></div>
+  <!--div class="btn-map btn ico-map"></div-->
   <div class="btn-fullsize btn ico-fullsize"></div>
   <div class="btn-preload btn"><div class="preload-ratio col">0</div><div class="preload-info col"><b>HD</b><span>%</span></div></div>
 </div>
@@ -859,11 +859,11 @@ var toggleZoom = function(e){
   if(!$('html').is(".locked")){      
     if(isZoom()){
       unzoom(e);
-      map.setView([15.9876275,-61.7106999], 19);    
+      //map.setView([15.9876275,-61.7106999], 19);    
     }
     else{
       zoom(e);
-      map.setView([15.9876275,-61.7106999], 20);
+      //map.setView([15.9876275,-61.7106999], 20);
     }
   }
   else{
