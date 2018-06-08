@@ -96,17 +96,19 @@ app.get '/pagecount', (req, res) ->
   else
     res.send('{ pageCount: -1 }')
 
-app.get '/assets/:path', (req, res) ->
-  result = {path:req.params.path}
-  res.send(result)
 
 app.use (req, res, next) =>
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "X-Requested-With")
-  if req.url.match(/^\/(css|javascripts|img|js|images|font|assets|data)\/.+/)
-    res.setHeader('Cache-Control', "public, max-age=#{daysInCache}")
+  res.header("Accept-Ranges","bytes")
+  res.setHeader('Cache-Control', "public, max-age=#{daysInCache / 1000}")
   res.header("Expires",daysInCache)
-  next()
+
+app.get '/assets*', (req, res) ->
+  result = {path:req.params,query:req.query}
+  res.send(result)
+
+
 
 app.use (err, req, res, next) ->
   console.error(err.stack)
