@@ -110,8 +110,13 @@ app.get '/assets*', (req, res) ->
     path = req.params[0]
     request.get({url:"https://storage.googleapis.com/www.littfass.com#{path}",headers: {'Access-Control-Allow-Origin': '*','Access-Control-Allow-Headers': 'X-Requested-With'}}).pipe(res)
   else
-    res.send("File not found. #{path}")
+    res.send("File not found.")
 
+app.get '/api*', (req, res) ->
+  if req.params?[0]
+    res.send(req.params?[0])
+  else
+    res.send("Api not found.")
 
 
 app.use (err, req, res, next) ->
